@@ -1,19 +1,30 @@
 {
-  "name": "bun-ts-starter",
+  "name": "gitlint",
   "type": "module",
-  "version": "0.4.0",
-  "description": "A simple TypeScript starter kit using Bun.",
+  "version": "0.0.0",
+  "description": "Efficient Git Commit Message Linting and Formatting",
   "author": "Chris Breuer <chris@stacksjs.org>",
   "license": "MIT",
-  "homepage": "https://github.com/stacksjs/ts-starter#readme",
+  "homepage": "https://github.com/stacksjs/gitlint#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/stacksjs/ts-starter.git"
+    "url": "git+https://github.com/stacksjs/gitlint.git"
   },
   "bugs": {
-    "url": "https://github.com/stacksjs/ts-starter/issues"
+    "url": "https://github.com/stacksjs/gitlint/issues"
   },
-  "keywords": ["typescript", "starter", "kit", "bun", "package"],
+  "keywords": [
+    "git",
+    "lint",
+    "linter",
+    "commit",
+    "message",
+    "formatting",
+    "formatter",
+    "conventional",
+    "conventional-commits",
+    "typescript"
+  ],
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -52,7 +63,7 @@
   },
   "devDependencies": {
     "@stacksjs/docs": "^0.70.23",
-    "@stacksjs/eslint-config": "^4.2.1-beta.1",
+    "@stacksjs/eslint-config": "^4.10.2-beta.3",
     "@types/bun": "^1.2.9",
     "bumpp": "^10.1.0",
     "bun-plugin-dtsx": "^0.21.9",
