@@ -1,13 +1,12 @@
-import type { BinaryConfig } from './types'
+import type { GitLintConfig } from './types'
 import { loadConfig } from 'bunfig'
 
-export const defaultConfig: BinaryConfig = {
-  from: 'localhost:5173',
+export const defaultConfig: GitLintConfig = {
   verbose: true,
 }
 
 // eslint-disable-next-line antfu/no-top-level-await
-export const config: BinaryConfig = await loadConfig({
-  name: 'binary',
+export const config: GitLintConfig = await loadConfig({
+  name: 'gitlint',
   defaultConfig,
 })

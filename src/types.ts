@@ -1,4 +1,3 @@
-export interface BinaryConfig {
-  from: string
+export interface GitLintConfig {
   verbose: boolean
 }
