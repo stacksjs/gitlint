@@ -113,7 +113,7 @@ module.exports = {
 ## Programmatic Usage
 
 ```js
-import { lintCommitMessage, parseCommitMessage } from 'gitlint'
+import { lintCommitMessage, parseCommitMessage } from '@stacksjs/gitlint'
 
 // Lint a commit message
 const result = lintCommitMessage('feat: add new feature')
