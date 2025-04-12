@@ -1,7 +1,7 @@
 {
   "name": "@stacksjs/gitlint",
   "type": "module",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Efficient Git Commit Message Linting and Formatting",
   "author": "Chris Breuer <chris@stacksjs.org>",
   "license": "MIT",
