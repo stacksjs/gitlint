@@ -1,7 +1,6 @@
 import { execSync } from 'node:child_process'
 import fs from 'node:fs'
 import path from 'node:path'
-import process from 'node:process'
 
 /**
  * Find the Git repository root directory
@@ -11,6 +10,7 @@ function findGitRoot(): string | null {
     const gitRoot = execSync('git rev-parse --show-toplevel', { encoding: 'utf8' }).trim()
     return gitRoot
   }
+  // eslint-disable-next-line unused-imports/no-unused-vars
   catch (_error) {
     return null
   }

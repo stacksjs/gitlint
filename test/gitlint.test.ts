@@ -1,4 +1,4 @@
-import { describe, expect, it, spyOn } from 'bun:test'
+import { describe, expect, it } from 'bun:test'
 import { lintCommitMessage, parseCommitMessage, rules } from '../src'
 
 describe('gitlint', () => {

@@ -23,6 +23,7 @@ describe('gitlint CLI', () => {
     try {
       fs.rmSync(tempDir, { recursive: true, force: true })
     }
+    // eslint-disable-next-line unused-imports/no-unused-vars
     catch (_error) {
       // Ignore errors during cleanup
     }
@@ -68,6 +69,7 @@ describe('gitlint CLI', () => {
       // If we get here, it means the command succeeded (exit code 0)
       // This is expected for a valid message
     }
+    // eslint-disable-next-line unused-imports/no-unused-vars
     catch (_error) {
       // Should not throw for a valid message
       expect('No error').toBe('Error occurred')
