@@ -22,6 +22,8 @@ npm install -g @stacksjs/gitlint
 bun install -g @stacksjs/gitlint
 ```
 
+_We are looking to get it published as `gitlint` on npm, but it's not allowing us to do so due to `git-lint`. Please npm 🙏🏽_
+
 ## Usage
 
 ### CLI
