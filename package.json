@@ -1,5 +1,5 @@
 {
-  "name": "gitlint",
+  "name": "@stacksjs/gitlint",
   "type": "module",
   "version": "0.1.2",
   "description": "Efficient Git Commit Message Linting and Formatting",
