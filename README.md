@@ -8,39 +8,123 @@
 
 # bun-ts-starter
 
-This is an opinionated TypeScript Starter kit to help kick-start development of your next Bun package.
+> Efficient Git Commit Message Linting and Formatting
 
-## Features
+GitLint is a tool for enforcing consistent Git commit message conventions. It analyzes commit messages to ensure they follow the [Conventional Commits](https://www.conventionalcommits.org/) specification and other configurable rules.
 
-This Starter Kit comes pre-configured with the following:
-
-- 🛠️ [Powerful Build Process](https://github.com/oven-sh/bun) - via Bun
-- 💪🏽 [Fully Typed APIs](https://www.typescriptlang.org/) - via TypeScript
-- 📚 [Documentation-ready](https://vitepress.dev/) - via VitePress
-- ⌘ [CLI & Binary](https://www.npmjs.com/package/bunx) - via Bun & CAC
-- 🧪 [Built With Testing In Mind](https://bun.sh/docs/cli/test) - pre-configured unit-testing powered by [Bun](https://bun.sh/docs/cli/test)
-- 🤖 [Renovate](https://renovatebot.com/) - optimized & automated PR dependency updates
-- 🎨 [ESLint](https://eslint.org/) - for code linting _(and formatting)_
-- 📦️ [pkg.pr.new](https://pkg.pr.new) - Continuous (Preview) Releases for your libraries
-- 🐙 [GitHub Actions](https://github.com/features/actions) - runs your CI _(fixes code style issues, tags releases & creates its changelogs, runs the test suite, etc.)_
-
-## Get Started
-
-It's rather simple to get your package development started:
+## Installation
 
 ```bash
-# you may use this GitHub template or the following command:
-bunx degit stacksjs/ts-starter my-pkg
-cd my-pkg
+# Install globally
+npm install -g gitlint
 
-bun i # install all deps
-bun run build # builds the library for production-ready use
-
-# after you have successfully committed, you may create a "release"
-bun run release # automates git commits, versioning, and changelog generations
+# Or using bun
+bun install -g gitlint
 ```
 
-_Check out the package.json scripts for more commands._
+## Usage
+
+### CLI
+
+```bash
+# Check a commit message from a file
+gitlint path/to/commit-message.txt
+
+# Use with git commit message hook (common use case)
+gitlint --edit $1
+
+# Show help
+gitlint --help
+```
+
+### Git Hooks Integration
+
+GitLint can automatically install Git hooks for your repository:
+
+```bash
+# Install the commit-msg hook
+gitlint hooks --install
+
+# Force overwrite if a hook already exists
+gitlint hooks --install --force
+
+# Uninstall the hooks
+gitlint hooks --uninstall
+```
+
+Or manually add to your `.git/hooks/commit-msg` file:
+
+```bash
+#!/bin/sh
+gitlint --edit "$1"
+```
+
+Or use with [husky](https://github.com/typicode/husky):
+
+```json
+// package.json
+{
+  "husky": {
+    "hooks": {
+      "commit-msg": "gitlint --edit $HUSKY_GIT_PARAMS"
+    }
+  }
+}
+```
+
+## Configuration
+
+Create a `gitlint.config.js` file in your project root:
+
+```js
+// gitlint.config.js
+module.exports = {
+  verbose: true,
+  rules: {
+    'conventional-commits': 2,
+    'header-max-length': [2, { maxLength: 72 }],
+    'body-max-line-length': [2, { maxLength: 100 }],
+    'body-leading-blank': 2,
+    'no-trailing-whitespace': 1
+  },
+  ignores: [
+    '^Merge branch',
+    '^Merge pull request'
+  ]
+}
+```
+
+### Rule Levels
+
+- `0` or `off`: Disable the rule
+- `1` or `warning`: Warning (doesn't cause exit code to be non-zero)
+- `2` or `error`: Error (causes exit code to be non-zero)
+
+## Built-in Rules
+
+- `conventional-commits`: Enforces conventional commit format (`<type>(scope): description`)
+- `header-max-length`: Enforces a maximum header length
+- `body-max-line-length`: Enforces a maximum body line length
+- `body-leading-blank`: Enforces a blank line between header and body
+- `no-trailing-whitespace`: Checks for trailing whitespace
+
+## Programmatic Usage
+
+```js
+import { lintCommitMessage, parseCommitMessage } from 'gitlint'
+
+// Lint a commit message
+const result = lintCommitMessage('feat: add new feature')
+console.log(result.valid) // true or false
+console.log(result.errors) // array of error messages
+console.log(result.warnings) // array of warning messages
+
+// Parse a commit message
+const parsed = parseCommitMessage('feat(scope): description\n\nBody text\n\nCloses #123')
+console.log(parsed.type) // 'feat'
+console.log(parsed.scope) // 'scope'
+console.log(parsed.references) // [{issue: '123', ...}]
+```
 
 ## Testing
 
@@ -50,7 +134,7 @@ bun test
 
 ## Changelog
 
-Please see our [releases](https://github.com/stackjs/bun-ts-starter/releases) page for more information on what has changed recently.
+Please see our [releases](https://github.com/stackjs/bun-gitlint/releases) page for more information on what has changed recently.
 
 ## Contributing
 
@@ -60,7 +144,7 @@ Please see [CONTRIBUTING](.github/CONTRIBUTING.md) for details.
 
 For help, discussion about best practices, or any other conversation that would benefit from being searchable:
 
-[Discussions on GitHub](https://github.com/stacksjs/ts-starter/discussions)
+[Discussions on GitHub](https://github.com/stacksjs/gitlint/discussions)
 
 For casual chit-chat with others using this package:
 
@@ -86,10 +170,10 @@ The MIT License (MIT). Please see [LICENSE](LICENSE.md) for more information.
 Made with 💙
 
 <!-- Badges -->
-[npm-version-src]: https://img.shields.io/npm/v/bun-ts-starter?style=flat-square
-[npm-version-href]: https://npmjs.com/package/bun-ts-starter
-[github-actions-src]: https://img.shields.io/github/actions/workflow/status/stacksjs/ts-starter/ci.yml?style=flat-square&branch=main
-[github-actions-href]: https://github.com/stacksjs/ts-starter/actions?query=workflow%3Aci
+[npm-version-src]: https://img.shields.io/npm/v/bun-gitlint?style=flat-square
+[npm-version-href]: https://npmjs.com/package/bun-gitlint
+[github-actions-src]: https://img.shields.io/github/actions/workflow/status/stacksjs/gitlint/ci.yml?style=flat-square&branch=main
+[github-actions-href]: https://github.com/stacksjs/gitlint/actions?query=workflow%3Aci
 
-<!-- [codecov-src]: https://img.shields.io/codecov/c/gh/stacksjs/ts-starter/main?style=flat-square
-[codecov-href]: https://codecov.io/gh/stacksjs/ts-starter -->
+<!-- [codecov-src]: https://img.shields.io/codecov/c/gh/stacksjs/gitlint/main?style=flat-square
+[codecov-href]: https://codecov.io/gh/stacksjs/gitlint -->
