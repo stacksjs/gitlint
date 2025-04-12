@@ -58,12 +58,18 @@ Define the rules to apply during validation. Each rule can be:
 Default rules:
 
 ```ts
-{
-  'conventional-commits': 2,
-  'header-max-length': [2, { maxLength: 72 }],
-  'body-max-line-length': [2, { maxLength: 100 }],
-  'body-leading-blank': 2,
-  'no-trailing-whitespace': 1,
+// gitlint.config.ts
+import type { GitLintConfig } from 'gitlint'
+
+const config: GitLintConfig = {
+  rules: {
+    'conventional-commits': 2,
+    'header-max-length': [2, { maxLength: 72 }],
+    'body-max-line-length': [2, { maxLength: 100 }],
+    'body-leading-blank': 2,
+    'no-trailing-whitespace': 1,
+  },
+  verbose: true,
 }
 ```
 
