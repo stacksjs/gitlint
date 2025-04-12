@@ -87,3 +87,51 @@ Made with 💙
 
 <!-- [codecov-src]: https://img.shields.io/codecov/c/gh/stacksjs/rpx/main?style=flat-square
 [codecov-href]: https://codecov.io/gh/stacksjs/rpx -->
+
+# Introduction to GitLint
+
+GitLint is a lightweight, customizable Git commit message linter that helps teams maintain consistent, high-quality commit histories. By enforcing structured commit messages, GitLint makes codebases easier to maintain, changelog generation more straightforward, and team collaboration smoother.
+
+## Why Use GitLint?
+
+Maintaining a clean and consistent commit history is essential for several reasons:
+
+- **Clear project history**: Well-formatted commits make it easier to understand changes over time
+- **Automated semantic versioning**: Structured commits enable automatic version bumping based on commit types
+- **Streamlined changelog generation**: Properly formatted commits can be automatically compiled into readable changelogs
+- **Better code reviews**: Descriptive commits make the review process more efficient
+- **Improved collaboration**: Standardized messages help team members understand each other's changes
+
+## Key Features
+
+GitLint offers a comprehensive set of features to help enforce your team's commit message conventions:
+
+### Conventional Commits Support
+
+GitLint enforces the [Conventional Commits](https://www.conventionalcommits.org/) standard by default, ensuring your commits follow a semantic format like:
+
+```
+feat(component): add ability to parse @mentions
+```
+
+### Customizable Validation Rules
+
+Configure GitLint to match your team's specific commit message standards with rules such as:
+
+- Header length restrictions
+- Body line length limits
+- Required blank lines between sections
+- Whitespace validations
+- Issue reference formatting
+
+### Git Hooks Integration
+
+Seamlessly integrate GitLint with Git hooks to validate commits before they're created, ensuring your repository always maintains the expected standard.
+
+### Flexible Configuration
+
+Customize GitLint to match your project's needs through a simple configuration file that can be committed to your repository and shared across your team.
+
+## Getting Started
+
+Ready to improve your commit messages? Head over to the [Installation](/install) guide to get started with GitLint in minutes.

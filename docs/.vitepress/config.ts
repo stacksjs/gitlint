@@ -53,16 +53,33 @@ const sidebar = [
   {
     text: 'Get Started',
     items: [
-      { text: 'Intro', link: '/intro' },
-      { text: 'Install', link: '/install' },
+      { text: 'Introduction', link: '/intro' },
+      { text: 'Installation', link: '/install' },
       { text: 'Usage', link: '/usage' },
-      { text: 'Config', link: '/config' },
+      { text: 'Configuration', link: '/config' },
     ],
   },
-  { text: 'Showcase', link: '/Showcase' },
+  {
+    text: 'Features',
+    items: [
+      { text: 'Conventional Commits', link: '/features/conventional-commits' },
+      { text: 'Message Format Rules', link: '/features/message-format' },
+      { text: 'Issue References', link: '/features/issue-references' },
+      { text: 'Custom Rules', link: '/features/custom-rules' },
+    ],
+  },
+  {
+    text: 'Advanced',
+    items: [
+      { text: 'Git Hooks', link: '/advanced/git-hooks' },
+      { text: 'CI Integration', link: '/advanced/ci-integration' },
+      { text: 'Performance', link: '/advanced/performance' },
+    ],
+  },
+  { text: 'API Reference', link: '/api-reference' },
 ]
-const description = 'A TypeScript Starter Kit. For a better Development Experience.'
-const title = 'ts-starter | A TypeScript Starter Kit. For a better Development Experience.'
+const description = 'A lightweight, customizable commit message linter to enforce commit message conventions.'
+const title = 'GitLint | Enforce consistent git commit messages.'
 
 export default withPwa(
   defineConfig({

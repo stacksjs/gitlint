@@ -3,9 +3,9 @@
 layout: home
 
 hero:
-  name: "ts-starter"
-  text: "For a better local environment."
-  tagline: "Modern and smart reverse proxy."
+  name: "GitLint"
+  text: "Enforce consistent git commit messages."
+  tagline: "Lightweight, customizable commit linting for better git workflows."
   image: /images/logo-white.png
   actions:
     - theme: brand
@@ -13,21 +13,21 @@ hero:
       link: /intro
     - theme: alt
       text: View on GitHub
-      link: https://github.com/stacksjs/rpx
+      link: https://github.com/stacksjs/gitlint
 
 features:
-  - title: "Minimal Starter Kit"
-    icon: "🔀"
-    details: "Bootstrap your next TypeScript project."
-  - title: "Documentation"
-    icon: "📚"
-    details: "Easily document your idea/package/library."
-  - title: "CLI"
-    icon: "🛠"
-    details: "Build your own CLI."
-  - title: "Binary"
-    icon: "🚀"
-    details: "Automatically builds a binary for your project out of your CLI."
+  - title: "Conventional Commits"
+    icon: "✅"
+    details: "Enforce semantic commit messages based on the Conventional Commits standard."
+  - title: "Customizable Rules"
+    icon: "⚙️"
+    details: "Configure validation rules to match your team's commit message standards."
+  - title: "Git Hooks Integration"
+    icon: "🔄"
+    details: "Seamlessly integrates with Git hooks to validate commits before they're created."
+  - title: "Command-Line Interface"
+    icon: "💻"
+    details: "Simple CLI for validating commit messages with helpful, descriptive errors."
 ---
 
 <Home />

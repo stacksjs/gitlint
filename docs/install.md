@@ -1,59 +1,46 @@
-# Install
+# Installation
 
-_This is just an example of the ts-starter docs._
-
-Installing `rpx` is easy. Simply pull it in via your package manager of choice, or download the binary directly.
+Installing GitLint is straightforward. You can install it locally for a specific project or globally to use across all your repositories.
 
 ## Package Managers
 
-Choose your package manager of choice:
+Choose your preferred package manager:
 
 ::: code-group
 
 ```sh [npm]
-npm install --save-dev @stacksjs/rpx
-# npm i -d @stacksjs/rpx
+# Install locally for a project
+npm install --save-dev gitlint
 
-# or, install globally via
-npm i -g @stacksjs/rpx
-```
-
-```sh [bun]
-bun install --dev @stacksjs/rpx
-# bun add --dev @stacksjs/rpx
-# bun i -d @stacksjs/rpx
-
-# or, install globally via
-bun add --global @stacksjs/rpx
-```
-
-```sh [pnpm]
-pnpm add --save-dev @stacksjs/rpx
-# pnpm i -d @stacksjs/rpx
-
-# or, install globally via
-pnpm add --global @stacksjs/rpx
+# Or install globally
+npm install -g gitlint
 ```
 
 ```sh [yarn]
-yarn add --dev @stacksjs/rpx
-# yarn i -d @stacksjs/rpx
+# Install locally for a project
+yarn add --dev gitlint
 
-# or, install globally via
-yarn global add @stacksjs/rpx
+# Or install globally
+yarn global add gitlint
 ```
 
-```sh [brew]
-brew install rpx # coming soon
+```sh [pnpm]
+# Install locally for a project
+pnpm add --save-dev gitlint
+
+# Or install globally
+pnpm add --global gitlint
 ```
 
-```sh [pkgx]
-pkgx rpx # coming soon
+```sh [bun]
+# Install locally for a project
+bun add --dev gitlint
+
+# Or install globally
+bun add --global gitlint
 ```
 
 :::
-
-Read more about how to use it in the Usage section of the documentation.
 
 ## Binaries
 
@@ -63,56 +50,86 @@ Choose the binary that matches your platform and architecture:
 
 ```sh [macOS (arm64)]
 # Download the binary
-curl -L https://github.com/stacksjs/rpx/releases/download/v0.9.1/rpx-darwin-arm64 -o rpx
+curl -L https://github.com/stacksjs/gitlint/releases/download/v1.0.0/gitlint-darwin-arm64 -o gitlint
 
 # Make it executable
-chmod +x rpx
+chmod +x gitlint
 
 # Move it to your PATH
-mv rpx /usr/local/bin/rpx
+mv gitlint /usr/local/bin/gitlint
 ```
 
 ```sh [macOS (x64)]
 # Download the binary
-curl -L https://github.com/stacksjs/rpx/releases/download/v0.9.1/rpx-darwin-x64 -o rpx
+curl -L https://github.com/stacksjs/gitlint/releases/download/v1.0.0/gitlint-darwin-x64 -o gitlint
 
 # Make it executable
-chmod +x rpx
+chmod +x gitlint
 
 # Move it to your PATH
-mv rpx /usr/local/bin/rpx
+mv gitlint /usr/local/bin/gitlint
 ```
 
 ```sh [Linux (arm64)]
 # Download the binary
-curl -L https://github.com/stacksjs/rpx/releases/download/v0.9.1/rpx-linux-arm64 -o rpx
+curl -L https://github.com/stacksjs/gitlint/releases/download/v1.0.0/gitlint-linux-arm64 -o gitlint
 
 # Make it executable
-chmod +x rpx
+chmod +x gitlint
 
 # Move it to your PATH
-mv rpx /usr/local/bin/rpx
+mv gitlint /usr/local/bin/gitlint
 ```
 
 ```sh [Linux (x64)]
 # Download the binary
-curl -L https://github.com/stacksjs/rpx/releases/download/v0.9.1/rpx-linux-x64 -o rpx
+curl -L https://github.com/stacksjs/gitlint/releases/download/v1.0.0/gitlint-linux-x64 -o gitlint
 
 # Make it executable
-chmod +x rpx
+chmod +x gitlint
 
 # Move it to your PATH
-mv rpx /usr/local/bin/rpx
+mv gitlint /usr/local/bin/gitlint
 ```
 
 ```sh [Windows (x64)]
 # Download the binary
-curl -L https://github.com/stacksjs/rpx/releases/download/v0.9.1/rpx-windows-x64.exe -o rpx.exe
+curl -L https://github.com/stacksjs/gitlint/releases/download/v1.0.0/gitlint-windows-x64.exe -o gitlint.exe
 
 # Move it to your PATH (adjust the path as needed)
-move rpx.exe C:\Windows\System32\rpx.exe
+move gitlint.exe C:\Windows\System32\gitlint.exe
 ```
 
-::: tip
-You can also find the `rpx` binaries in GitHub [releases](https://github.com/stacksjs/rpx/releases).
 :::
+
+::: tip
+You can also find the `gitlint` binaries in GitHub [releases](https://github.com/stacksjs/gitlint/releases).
+:::
+
+## Verifying Installation
+
+To verify that GitLint is installed correctly, run:
+
+```bash
+gitlint --version
+```
+
+You should see the current version number of GitLint displayed.
+
+## Git Hooks Setup
+
+For maximum effectiveness, you'll likely want to integrate GitLint with Git hooks. This can be done automatically using our built-in hooks command:
+
+```bash
+# Navigate to your project directory
+cd your-project-directory
+
+# Install the Git hooks
+gitlint hooks --install
+```
+
+This will set up a `commit-msg` hook that automatically validates your commit messages against your configured rules.
+
+## Next Steps
+
+Once you have GitLint installed, head over to the [Usage](/usage) guide to learn how to validate your commit messages, or check out the [Configuration](/config) page to customize GitLint for your project's specific needs.
