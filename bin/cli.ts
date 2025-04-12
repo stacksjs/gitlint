@@ -1,25 +1,11 @@
 import { Buffer } from 'node:buffer'
-import fs from 'node:fs'
-import path from 'node:path'
 import process from 'node:process'
 import { CAC } from 'cac'
 import { version } from '../package.json'
 import { defaultConfig } from '../src/config'
+import { readCommitMessageFromFile } from '../src/utils'
 
 const cli = new CAC('gitlint')
-
-// Helper function to read commit message from file
-function readCommitMessageFromFile(filePath: string): string {
-  try {
-    return fs.readFileSync(path.resolve(process.cwd(), filePath), 'utf8')
-  }
-  catch (error: unknown) {
-    console.error(`Error reading commit message file: ${filePath}`)
-    console.error(error)
-    process.exit(1)
-    return '' // Unreachable but needed for TypeScript
-  }
-}
 
 // Main lint command
 cli
