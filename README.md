@@ -61,7 +61,7 @@ gitlint --edit "$1"
 
 Or use with [husky](https://github.com/typicode/husky):
 
-```json
+```jsonc
 // package.json
 {
   "husky": {
