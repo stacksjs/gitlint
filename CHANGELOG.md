@@ -1,4 +1,17 @@
 
+## v0.1.1...main
+
+[compare changes](https://github.com/stacksjs/gitlint/compare/v0.1.1...main)
+
+### 🏡 Chore
+
+- Wip ([7dd4e22](https://github.com/stacksjs/gitlint/commit/7dd4e22))
+- Wip ([6c24ede](https://github.com/stacksjs/gitlint/commit/6c24ede))
+
+### ❤️ Contributors
+
+- Chris ([@chrisbbreuer](https://github.com/chrisbbreuer))
+
 ## v0.1.0...main
 
 [compare changes](https://github.com/stacksjs/gitlint/compare/v0.1.0...main)
