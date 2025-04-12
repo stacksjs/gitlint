@@ -33,7 +33,7 @@ function normalizeRuleLevel(level: RuleLevel): 0 | 1 | 2 {
 /**
  * Lint a commit message against configured rules
  */
-export function lintCommitMessage(message: string, verbose = config.verbose): LintResult {
+export function lintCommitMessage(message: string, verbose: boolean = config.verbose): LintResult {
   const result: LintResult = {
     valid: true,
     errors: [],
@@ -63,10 +63,10 @@ export function lintCommitMessage(message: string, verbose = config.verbose): Li
 
     // Handle different rule configuration formats
     if (Array.isArray(ruleConfig)) {
-      [level, ruleOptions] = ruleConfig
+      [level, ruleOptions] = ruleConfig as [RuleLevel, RuleConfig?]
     }
     else {
-      level = ruleConfig
+      level = ruleConfig as RuleLevel
     }
 
     const normalizedLevel = normalizeRuleLevel(level)
