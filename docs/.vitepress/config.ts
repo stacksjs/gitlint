@@ -65,7 +65,6 @@ const sidebar = [
       { text: 'Conventional Commits', link: '/features/conventional-commits' },
       { text: 'Message Format Rules', link: '/features/message-format' },
       { text: 'Issue References', link: '/features/issue-references' },
-      { text: 'Custom Rules', link: '/features/custom-rules' },
     ],
   },
   {
@@ -73,6 +72,7 @@ const sidebar = [
     items: [
       { text: 'Git Hooks', link: '/advanced/git-hooks' },
       { text: 'CI Integration', link: '/advanced/ci-integration' },
+      { text: 'Custom Rules', link: '/advanced/custom-rules' },
       { text: 'Performance', link: '/advanced/performance' },
     ],
   },
