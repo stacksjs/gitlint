@@ -22,7 +22,7 @@ const nav = [
   { text: 'News', link: 'https://stacksjs.org/news' },
   {
     text: 'Changelog',
-    link: 'https://github.com/stacksjs/ts-starter/blob/main/CHANGELOG.md',
+    link: 'https://github.com/stacksjs/gitlint/blob/main/CHANGELOG.md',
   },
   // { text: 'Blog', link: 'https://updates.ow3.org' },
   {
@@ -84,7 +84,7 @@ const title = 'GitLint | Enforce consistent git commit messages.'
 export default withPwa(
   defineConfig({
     lang: 'en-US',
-    title: 'ts-starter',
+    title: 'gitlint',
     description,
     metaChunk: true,
     cleanUrls: true,
@@ -99,7 +99,7 @@ export default withPwa(
       ['meta', { name: 'author', content: 'Stacks.js, Inc.' }],
       ['meta', {
         name: 'tags',
-        content: 'ts-starter, stacksjs, reverse proxy, modern, lightweight, zero-config, local development',
+        content: 'gitlint, typescript, commit message, linter, git, hooks, ci, integration, performance, custom rules',
       }],
 
       ['meta', { property: 'og:type', content: 'website' }],
@@ -107,7 +107,7 @@ export default withPwa(
       ['meta', { property: 'og:title', content: title }],
       ['meta', { property: 'og:description', content: description }],
 
-      ['meta', { property: 'og:site_name', content: 'ts-starter' }],
+      ['meta', { property: 'og:site_name', content: 'gitlint' }],
       ['meta', { property: 'og:image', content: './images/og-image.jpg' }],
       ['meta', { property: 'og:url', content: 'https://reverse-proxy.sh/' }],
       // ['script', { 'src': 'https://cdn.usefathom.com/script.js', 'data-site': '', 'data-spa': 'auto', 'defer': '' }],
@@ -138,8 +138,8 @@ export default withPwa(
 
       socialLinks: [
         { icon: 'twitter', link: 'https://twitter.com/stacksjs' },
-        { icon: 'bluesky', link: 'https://bsky.app/profile/chrisbreuer.dev' },
-        { icon: 'github', link: 'https://github.com/stacksjs/ts-starter' },
+        { icon: 'bluesky', link: 'https://bsky.app/profile/chris-breuer.me' },
+        { icon: 'github', link: 'https://github.com/stacksjs/gitlint' },
         { icon: 'discord', link: 'https://discord.gg/stacksjs' },
       ],
 

@@ -86,7 +86,7 @@ We would like to extend our thanks to the following sponsors for funding Stacks 
 
 ## License
 
-The MIT License (MIT). Please see [LICENSE](https://github.com/stacksjs/ts-starter/tree/main/LICENSE.md) for more information.
+The MIT License (MIT). Please see [LICENSE](https://github.com/stacksjs/gitlint/tree/main/LICENSE.md) for more information.
 
 Made with 💙
 
