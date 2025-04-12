@@ -134,7 +134,7 @@ bun test
 
 ## Changelog
 
-Please see our [releases](https://github.com/stackjs/bun-gitlint/releases) page for more information on what has changed recently.
+Please see our [releases](https://github.com/stackjs/gitlint/releases) page for more information on what has changed recently.
 
 ## Contributing
 
@@ -170,8 +170,8 @@ The MIT License (MIT). Please see [LICENSE](LICENSE.md) for more information.
 Made with 💙
 
 <!-- Badges -->
-[npm-version-src]: https://img.shields.io/npm/v/bun-gitlint?style=flat-square
-[npm-version-href]: https://npmjs.com/package/bun-gitlint
+[npm-version-src]: https://img.shields.io/npm/v/gitlint?style=flat-square
+[npm-version-href]: https://npmjs.com/package/gitlint
 [github-actions-src]: https://img.shields.io/github/actions/workflow/status/stacksjs/gitlint/ci.yml?style=flat-square&branch=main
 [github-actions-href]: https://github.com/stacksjs/gitlint/actions?query=workflow%3Aci
 
