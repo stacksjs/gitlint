@@ -24,18 +24,16 @@ function readCommitMessageFromFile(filePath: string): string {
 // Main lint command
 cli
   .command('[...files]', 'Lint commit message')
-  .option('--edit <file>', 'Path to .git/COMMIT_EDITMSG file')
+  .example('gitlint')
+  .example('gitlint .git/COMMIT_EDITMSG')
+  .example('git log -1 --pretty=%B | gitlint')
   .option('--verbose', 'Enable verbose output', { default: defaultConfig.verbose })
   .option('--config <file>', 'Path to config file')
   .action(async (files: string[], options) => {
     let commitMessage = ''
 
-    // Get commit message from file if --edit flag is used
-    if (options.edit) {
-      commitMessage = readCommitMessageFromFile(options.edit)
-    }
-    // Or from files passed as arguments
-    else if (files.length > 0) {
+    // Get commit message from files passed as arguments
+    if (files.length > 0) {
       commitMessage = readCommitMessageFromFile(files[0])
     }
     // Or from stdin if piped
@@ -79,6 +77,9 @@ cli
 // Install git hooks command
 cli
   .command('hooks', 'Manage git hooks')
+  .example('gitlint hooks --install')
+  .example('gitlint hooks --install --force')
+  .example('gitlint hooks --uninstall')
   .option('--install', 'Install git hooks')
   .option('--uninstall', 'Uninstall git hooks')
   .option('--force', 'Force overwrite existing hooks')
@@ -107,9 +108,11 @@ cli
   })
 
 // Version command
-cli.command('version', 'Show the version of gitlint').action(() => {
-  console.log(version)
-})
+cli.command('version', 'Show the version of gitlint')
+  .example('gitlint version')
+  .action(() => {
+    console.log(version)
+  })
 
 // Set up help and version
 cli.help()
