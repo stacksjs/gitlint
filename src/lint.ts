@@ -1,6 +1,21 @@
 import type { LintResult, LintRule, RuleConfig, RuleLevel } from './types'
-import { config } from './config'
 import { rules } from './rules'
+
+// Default configuration as fallback
+const defaultConfig = {
+  verbose: true,
+  rules: {
+    'conventional-commits': 2,
+    'header-max-length': [2, { maxLength: 72 }],
+    'body-max-line-length': [2, { maxLength: 100 }],
+    'body-leading-blank': 2,
+    'no-trailing-whitespace': 1,
+  },
+  ignores: [] as string[],
+}
+
+// Use default config
+const config = defaultConfig
 
 /**
  * Parse and normalize rule levels
