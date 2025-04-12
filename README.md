@@ -16,10 +16,10 @@ GitLint is a tool for enforcing consistent Git commit message conventions. It an
 
 ```bash
 # Install globally
-npm install -g gitlint
+npm install -g @stacksjs/gitlint
 
 # Or using bun
-bun install -g gitlint
+bun install -g @stacksjs/gitlint
 ```
 
 ## Usage
@@ -170,8 +170,8 @@ The MIT License (MIT). Please see [LICENSE](LICENSE.md) for more information.
 Made with 💙
 
 <!-- Badges -->
-[npm-version-src]: https://img.shields.io/npm/v/gitlint?style=flat-square
-[npm-version-href]: https://npmjs.com/package/gitlint
+[npm-version-src]: https://img.shields.io/npm/v/@stacksjs/gitlint?style=flat-square
+[npm-version-href]: https://npmjs.com/package/@stacksjs/gitlint
 [github-actions-src]: https://img.shields.io/github/actions/workflow/status/stacksjs/gitlint/ci.yml?style=flat-square&branch=main
 [github-actions-href]: https://github.com/stacksjs/gitlint/actions?query=workflow%3Aci
 
