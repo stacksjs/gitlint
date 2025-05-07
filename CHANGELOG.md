@@ -1,4 +1,30 @@
 
+## v0.1.3...main
+
+[compare changes](https://github.com/stacksjs/gitlint/compare/v0.1.3...main)
+
+### 📖 Documentation
+
+- Add initial documentation ([e989693](https://github.com/stacksjs/gitlint/commit/e989693))
+- Improve documentation ([1c7b321](https://github.com/stacksjs/gitlint/commit/1c7b321))
+- Adjust Custom Rules position ([ce3f40e](https://github.com/stacksjs/gitlint/commit/ce3f40e))
+- Update usage page ([6815f84](https://github.com/stacksjs/gitlint/commit/6815f84))
+
+### 🏡 Chore
+
+- Remove old changelog ([6aabea6](https://github.com/stacksjs/gitlint/commit/6aabea6))
+- Adjust fathom id ([07288cd](https://github.com/stacksjs/gitlint/commit/07288cd))
+- Lint ([7a14944](https://github.com/stacksjs/gitlint/commit/7a14944))
+- Adjust url ([562c767](https://github.com/stacksjs/gitlint/commit/562c767))
+- Update docs ([c9ca5aa](https://github.com/stacksjs/gitlint/commit/c9ca5aa))
+- Adjust some meta info ([a02cbe7](https://github.com/stacksjs/gitlint/commit/a02cbe7))
+- Add postinstall script ([a29e698](https://github.com/stacksjs/gitlint/commit/a29e698))
+
+### ❤️ Contributors
+
+- Chrisbbreuer ([@chrisbbreuer](https://github.com/chrisbbreuer))
+- Chris ([@chrisbbreuer](https://github.com/chrisbbreuer))
+
 ## v0.1.2...main
 
 [compare changes](https://github.com/stacksjs/gitlint/compare/v0.1.2...main)
