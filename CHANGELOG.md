@@ -1,4 +1,16 @@
 
+## v0.1.4...main
+
+[compare changes](https://github.com/stacksjs/gitlint/compare/v0.1.4...main)
+
+### 🏡 Chore
+
+- Add shebang to cli.ts ([097cd41](https://github.com/stacksjs/gitlint/commit/097cd41))
+
+### ❤️ Contributors
+
+- Chrisbbreuer ([@chrisbbreuer](https://github.com/chrisbbreuer))
+
 ## v0.1.3...main
 
 [compare changes](https://github.com/stacksjs/gitlint/compare/v0.1.3...main)
