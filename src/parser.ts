@@ -8,7 +8,7 @@ export function parseCommitMessage(message: string): CommitParsedResult {
   const header = lines[0] || ''
 
   // Parse header to extract type, scope, and subject
-  const headerMatch = header.match(/^(?<type>\w+)(?:\((?<scope>[^)]+)\))?:(?<subject>.+)$/)
+  const headerMatch = header.replace(/['"]/g, '').match(/^(?<type>\w+)(?:\((?<scope>[^)]+)\))?: ?(?<subject>.+)$/)
 
   let type = null
   let scope = null

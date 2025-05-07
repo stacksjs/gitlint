@@ -6,9 +6,11 @@ const conventionalCommits: LintRule = {
   description: 'Enforces conventional commit format',
   validate: (commitMsg: string) => {
     // Basic format: <type>[(scope)]: <description>
-    const pattern = /^(?:build|chore|ci|docs|feat|fix|perf|refactor|revert|style|test)(?:\([a-z0-9-]+\))?: .+/i
+    const pattern = /^(?:build|chore|ci|docs|feat|fix|perf|refactor|revert|style|test)(?:\([a-z0-9-]+\))?: .+$/i
 
-    if (!pattern.test(commitMsg.split('\n')[0])) {
+    const firstLine = commitMsg.split('\n')[0]
+
+    if (!pattern.test(firstLine.replace(/['"]/g, ''))) {
       return {
         valid: false,
         message: 'Commit message header does not follow conventional commit format: <type>[(scope)]: <description>',

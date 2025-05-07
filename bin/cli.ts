@@ -15,11 +15,15 @@ cli
   .example('git log -1 --pretty=%B | gitlint')
   .option('--verbose', 'Enable verbose output', { default: defaultConfig.verbose })
   .option('--config <file>', 'Path to config file')
+  .option('--edit', 'Read commit message from a file (used by git hooks)')
   .action(async (files: string[], options) => {
     let commitMessage = ''
 
     // Get commit message from files passed as arguments
-    if (files.length > 0) {
+    if (options.edit && files.length > 0) {
+      commitMessage = readCommitMessageFromFile(files[0])
+    }
+    else if (files.length > 0) {
       commitMessage = readCommitMessageFromFile(files[0])
     }
     // Or from stdin if piped
