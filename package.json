@@ -79,7 +79,7 @@
         "*.{js,ts,json,yaml,yml,md}": "bunx --bun eslint . --fix"
       }
     },
-    "commit-msg": "bunx gitlint"
+    "commit-msg": "bunx gitlint .git/COMMIT_EDITMSG"
   },
   "overrides": {
     "unconfig": "0.3.10"
