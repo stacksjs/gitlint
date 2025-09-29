@@ -1,0 +1,133 @@
+---
+description: General information based on the latest ./README.md content
+globs:
+---
+Update it if APIs change:
+
+# GitLint
+
+> Efficient Git Commit Message Linting and Formatting
+
+GitLint is a tool for enforcing consistent Git commit message conventions. It analyzes commit messages to ensure they follow the [Conventional Commits](https://www.conventionalcommits.org/) specification and other configurable rules.
+
+## Installation
+
+```bash
+# Install globally
+npm install -g @stacksjs/gitlint
+
+# Or using bun
+bun install -g @stacksjs/gitlint
+```
+
+_We are looking to get it published as `gitlint` on npm, but it's not allowing us to do so due to `git-lint`. Please npm 🙏🏽_
+
+## Usage
+
+### CLI
+
+```bash
+# Check a commit message from a file
+gitlint path/to/commit-message.txt
+
+# Use with git commit message hook (common use case)
+gitlint --edit $1
+
+# Show help
+gitlint --help
+```
+
+### Git Hooks Integration
+
+GitLint can automatically install Git hooks for your repository:
+
+```bash
+# Install the commit-msg hook
+gitlint hooks --install
+
+# Force overwrite if a hook already exists
+gitlint hooks --install --force
+
+# Uninstall the hooks
+gitlint hooks --uninstall
+```
+
+Or manually add to your `.git/hooks/commit-msg` file:
+
+```bash
+#!/bin/sh
+gitlint --edit "$1"
+```
+
+Or use with [husky](https://github.com/typicode/husky):
+
+```jsonc
+// package.json
+{
+  "husky": {
+    "hooks": {
+      "commit-msg": "gitlint --edit $HUSKY_GIT_PARAMS"
+    }
+  }
+}
+```
+
+## Configuration
+
+Create a `gitlint.config.js` file in your project root:
+
+```js
+// gitlint.config.js
+module.exports = {
+  verbose: true,
+  rules: {
+    'conventional-commits': 2,
+    'header-max-length': [2, { maxLength: 72 }],
+    'body-max-line-length': [2, { maxLength: 100 }],
+    'body-leading-blank': 2,
+    'no-trailing-whitespace': 1
+  },
+  ignores: [
+    '^Merge branch',
+    '^Merge pull request'
+  ]
+}
+```
+
+### Rule Levels
+
+- `0` or `off`: Disable the rule
+- `1` or `warning`: Warning (doesn't cause exit code to be non-zero)
+- `2` or `error`: Error (causes exit code to be non-zero)
+
+## Built-in Rules
+
+- `conventional-commits`: Enforces conventional commit format (`<type>(scope): description`)
+- `header-max-length`: Enforces a maximum header length
+- `body-max-line-length`: Enforces a maximum body line length
+- `body-leading-blank`: Enforces a blank line between header and body
+- `no-trailing-whitespace`: Checks for trailing whitespace
+
+## Programmatic Usage
+
+```js
+import { lintCommitMessage, parseCommitMessage } from '@stacksjs/gitlint'
+
+// Lint a commit message
+const result = lintCommitMessage('feat: add new feature')
+console.log(result.valid) // true or false
+console.log(result.errors) // array of error messages
+console.log(result.warnings) // array of warning messages
+
+// Parse a commit message
+const parsed = parseCommitMessage('feat(scope): description\n\nBody text\n\nCloses #123')
+console.log(parsed.type) // 'feat'
+console.log(parsed.scope) // 'scope'
+console.log(parsed.references) // [{issue: '123', ...}]
+```
+
+## Testing
+
+```bash
+bun test
+```
