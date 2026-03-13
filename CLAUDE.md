@@ -2,7 +2,7 @@
 
 ## About
 
-Efficient Git Commit Message Linting and Formatting.
+GitLint is a tool for enforcing consistent Git commit message conventions based on the Conventional Commits specification. It provides configurable rules (conventional-commits, header-max-length, body-max-line-length, etc.) with error/warning severity levels, Git hooks integration (install/uninstall via CLI or use with husky), and a programmatic API for linting and parsing commit messages.
 
 ## Linting
 
