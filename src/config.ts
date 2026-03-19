@@ -20,8 +20,18 @@ export const defaultConfig: GitLintConfig = {
   ignores: [],
 }
 
-// eslint-disable-next-line antfu/no-top-level-await
-export const config: GitLintConfig = await loadConfig({
+// Lazy-loaded config to avoid top-level await (enables bun --compile)
+let _config: GitLintConfig | null = null
+
+export async function getConfig(): Promise<GitLintConfig> {
+  if (!_config) {
+    _config = await loadConfig({
   name: 'gitlint',
   defaultConfig,
 })
+  }
+  return _config
+}
+
+// For backwards compatibility - synchronous access with default fallback
+export const config: GitLintConfig = defaultConfig

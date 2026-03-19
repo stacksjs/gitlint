@@ -6,9 +6,9 @@ GitLint is highly configurable to match your team's commit message standards. Yo
 
 GitLint can be configured using a `gitlint.config.js` or `gitlint.config.ts` file in your project root. The configuration file should export a default object with your desired options:
 
-```ts
+```typescript
 // gitlint.config.ts
-import type { GitLintConfig } from 'gitlint'
+import type { GitLintConfig } from '@stacksjs/gitlint'
 
 const config: GitLintConfig = {
   verbose: true,
@@ -53,26 +53,20 @@ Define the rules to apply during validation. Each rule can be:
 
 Default rules:
 
-```ts
-// gitlint.config.ts
-import type { GitLintConfig } from 'gitlint'
-
-const config: GitLintConfig = {
-  rules: {
-    'conventional-commits': 2,
-    'header-max-length': [2, { maxLength: 72 }],
-    'body-max-line-length': [2, { maxLength: 100 }],
-    'body-leading-blank': 2,
-    'no-trailing-whitespace': 1,
-  },
-  verbose: true,
+```typescript
+{
+  'conventional-commits': 2,
+  'header-max-length': [2, { maxLength: 72 }],
+  'body-max-line-length': [2, { maxLength: 100 }],
+  'body-leading-blank': 2,
+  'no-trailing-whitespace': 1,
 }
 ```
 
 ### `defaultIgnores`
 
 Type: `string[]`
-Default: `['Merge branch', 'Merge pull request', 'Merged PR', 'Revert ', 'Release ']`
+Default: `['^Merge branch', '^Merge pull request', '^Merged PR', '^Revert ', '^Release ']`
 
 Regular expression patterns for commit messages that should be automatically ignored by GitLint. These patterns are checked against the start of the commit message.
 
@@ -87,9 +81,11 @@ Custom regular expression patterns for commit messages to ignore. These are in a
 
 GitLint supports the following severity levels for rules:
 
-- `0` or `'off'`: Disable the rule
-- `1` or `'warning'`: Trigger a warning (validation passes, but warning is displayed)
-- `2` or `'error'`: Trigger an error (validation fails)
+| Level | Name | Description |
+|-------|------|-------------|
+| `0` | `'off'` | Disable the rule |
+| `1` | `'warning'` | Trigger a warning (validation passes, but warning is displayed) |
+| `2` | `'error'` | Trigger an error (validation fails) |
 
 ## Available Rules
 
@@ -101,21 +97,29 @@ Enforces the [Conventional Commits](https://www.conventionalcommits.org/) standa
 type(optional scope): description
 ```
 
+Valid types: `build`, `chore`, `ci`, `docs`, `feat`, `fix`, `perf`, `refactor`, `revert`, `style`, `test`
+
 ### `header-max-length`
 
 Enforces a maximum length for the commit header (first line).
 
 Options:
-
 - `maxLength`: Maximum number of characters allowed (default: 72)
+
+```typescript
+'header-max-length': [2, { maxLength: 72 }]
+```
 
 ### `body-max-line-length`
 
 Enforces a maximum length for each line in the commit body.
 
 Options:
-
 - `maxLength`: Maximum number of characters allowed per line (default: 100)
+
+```typescript
+'body-max-line-length': [2, { maxLength: 100 }]
+```
 
 ### `body-leading-blank`
 
@@ -143,67 +147,56 @@ GitLint uses the following precedence order for configuration (highest to lowest
 
 1. Command-line arguments
 2. Environment variables
-3. Configuration file
+3. Configuration file (`gitlint.config.ts` or `gitlint.config.js`)
 4. Default values
 
-```ts
-// reverse-proxy.config.{ts,js}
-import type { ReverseProxyOptions } from '@stacksjs/rpx'
-import os from 'node:os'
-import path from 'node:path'
+## Example Configurations
 
-const config: ReverseProxyOptions = {
-  /**
-   * The from URL to proxy from.
-   * Default: localhost:5173
-   */
-  from: 'localhost:5173',
+### Strict Configuration
 
-  /**
-   * The to URL to proxy to.
-   * Default: stacks.localhost
-   */
-  to: 'stacks.localhost',
-
-  /**
-   * The HTTPS settings.
-   * Default: true
-   * If set to false, the proxy will use HTTP.
-   * If set to true, the proxy will use HTTPS.
-   * If set to an object, the proxy will use HTTPS with the provided settings.
-   */
-  https: {
-    domain: 'stacks.localhost',
-    hostCertCN: 'stacks.localhost',
-    caCertPath: path.join(os.homedir(), '.stacks', 'ssl', `stacks.localhost.ca.crt`),
-    certPath: path.join(os.homedir(), '.stacks', 'ssl', `stacks.localhost.crt`),
-    keyPath: path.join(os.homedir(), '.stacks', 'ssl', `stacks.localhost.crt.key`),
-    altNameIPs: ['127.0.0.1'],
-    altNameURIs: ['localhost'],
-    organizationName: 'stacksjs.org',
-    countryName: 'US',
-    stateName: 'California',
-    localityName: 'Playa Vista',
-    commonName: 'stacks.localhost',
-    validityDays: 180,
-    verbose: false,
+```typescript
+// gitlint.config.ts
+export default {
+  verbose: true,
+  rules: {
+    'conventional-commits': 2,
+    'header-max-length': [2, { maxLength: 50 }],
+    'body-max-line-length': [2, { maxLength: 72 }],
+    'body-leading-blank': 2,
+    'no-trailing-whitespace': 2,
   },
-
-  /**
-   * The verbose setting.
-   * Default: false
-   * If set to true, the proxy will log more information.
-   */
-  verbose: false,
 }
-
-export default config
 ```
 
-_Then run:_
+### Relaxed Configuration
 
-```bash
-./rpx start
+```typescript
+// gitlint.config.ts
+export default {
+  verbose: false,
+  rules: {
+    'conventional-commits': 1,
+    'header-max-length': [1, { maxLength: 100 }],
+    'body-max-line-length': 0,
+    'body-leading-blank': 1,
+    'no-trailing-whitespace': 0,
+  },
+}
 ```
 
-To learn more, head over to the [documentation](https://reverse-proxy.sh/).
+### Minimal Configuration
+
+```typescript
+// gitlint.config.ts
+export default {
+  rules: {
+    'conventional-commits': 2,
+  },
+}
+```
+
+## Next Steps
+
+- [Commit Linting](/features/commit-linting) - Deep dive into linting
+- [Custom Rules](/features/custom-rules) - Create your own rules
+- [Git Hooks](/features/git-hooks) - Automate linting
