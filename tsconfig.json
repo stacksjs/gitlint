@@ -22,6 +22,7 @@
     "skipLibCheck": true
   },
   "exclude": [
-    "pickier.config.ts"
+    "pickier.config.ts",
+    "docs"
   ]
 }
