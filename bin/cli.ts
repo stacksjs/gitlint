@@ -17,7 +17,7 @@ cli
   .option('--verbose', 'Enable verbose output', { default: defaultConfig.verbose })
   .option('--config <file>', 'Path to config file')
   .option('--edit', 'Read commit message from a file (used by git hooks)')
-  .action(async (files: string[], options) => {
+  .action(async (files: string[], options: { edit?: boolean, verbose?: boolean, config?: string }) => {
     let commitMessage = ''
 
     // Get commit message from files passed as arguments
@@ -74,7 +74,7 @@ cli
   .option('--install', 'Install git hooks')
   .option('--uninstall', 'Uninstall git hooks')
   .option('--force', 'Force overwrite existing hooks')
-  .action(async (options) => {
+  .action(async (options: { install?: boolean, uninstall?: boolean, force?: boolean }) => {
     try {
       const { installGitHooks, uninstallGitHooks } = await import('../src')
 
