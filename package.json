@@ -69,7 +69,6 @@
     "postinstall": "bunx git-hooks && bun run scripts/postinstall.ts"
   },
   "devDependencies": {
-    "@stacksjs/docs": "^0.70.23",
     "better-dx": "^0.2.7"
   },
   "git-hooks": {
