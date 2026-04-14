@@ -2,7 +2,7 @@
 
 GitLint integrates seamlessly with Git hooks to automatically validate commit messages before they're created. This guide covers hook setup and usage.
 
-## What Are Git Hooks?
+## What Are Git Hooks
 
 Git hooks are scripts that run automatically at certain points in the Git workflow. GitLint uses the `commit-msg` hook to validate messages before commits are finalized.
 
@@ -25,7 +25,7 @@ gitlint hooks --install --force
 Create `.git/hooks/commit-msg`:
 
 ```bash
-#!/bin/sh
+# !/bin/sh
 gitlint "$1"
 ```
 
@@ -55,7 +55,7 @@ git commit -m "feat: add user authentication"
 # Invalid commit - aborted
 git commit -m "added authentication"
 # Error: Commit message does not follow conventional commit format
-# Commit aborted.
+# Commit aborted
 ```
 
 ## Integration Options
@@ -164,7 +164,7 @@ mkdir -p ~/.git-templates/hooks
 
 # Create hook
 cat > ~/.git-templates/hooks/commit-msg << 'EOF'
-#!/bin/sh
+# !/bin/sh
 npx gitlint "$1"
 EOF
 
@@ -222,7 +222,9 @@ Also validate commits in CI to catch bypassed hooks:
 
 ```yaml
 # GitHub Actions
+
 - name: Validate commit messages
+
   run: |
     git log --format=%B -n 1 | npx gitlint
 ```
@@ -232,20 +234,25 @@ See [CI/CD Integration](/advanced/ci-cd-integration) for more details.
 ## Best Practices
 
 1. **Always install hooks on setup**
+
    ```bash
    npm install && npm run prepare
    ```
 
 2. **Document hook requirements**
+
    Add setup instructions to your README
 
 3. **Use consistent configuration**
+
    Commit `gitlint.config.ts` to the repository
 
 4. **Combine with CI validation**
+
    Hooks can be bypassed; CI provides backup validation
 
 5. **Allow emergency bypass**
+
    Document when `--no-verify` is acceptable
 
 ## Next Steps

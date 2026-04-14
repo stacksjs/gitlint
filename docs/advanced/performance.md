@@ -79,12 +79,12 @@ const efficientRegex = /^(?:feat|fix|docs|style|refactor|perf|test|build|ci|chor
 When running in CI/CD environments:
 
 ```bash
-#!/bin/bash
+# !/bin/bash
 # Optimize GitLint in CI/CD pipelines
 
 # 1. Only validate the commits that changed
 if [ "$CI_PIPELINE_SOURCE" == "merge_request_event" ]; then
-  # For large MRs, consider limiting the number of commits to check
+# For large MRs, consider limiting the number of commits to check
   COMMIT_COUNT=$(git rev-list --count $CI_MERGE_REQUEST_TARGET_BRANCH_NAME..$CI_COMMIT_SHA)
 
   if [ $COMMIT_COUNT -gt 50 ]; then
@@ -94,7 +94,7 @@ if [ "$CI_PIPELINE_SOURCE" == "merge_request_event" ]; then
     git log --pretty=%B $CI_MERGE_REQUEST_TARGET_BRANCH_NAME..$CI_COMMIT_SHA | npx gitlint
   fi
 else
-  # For direct commits, just check the latest commit
+# For direct commits, just check the latest commit
   git log --pretty=%B -n 1 | npx gitlint
 fi
 ```

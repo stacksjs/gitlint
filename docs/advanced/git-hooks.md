@@ -39,7 +39,7 @@ chmod +x .git/hooks/commit-msg
 Then add the following content to the file:
 
 ```bash
-#!/bin/sh
+# !/bin/sh
 
 # Get the commit message file path (passed by Git)
 commit_msg_file=$1
@@ -56,7 +56,7 @@ exit 0
 You can customize the Git hook to add additional functionality or modify its behavior:
 
 ```bash
-#!/bin/sh
+# !/bin/sh
 
 # Get the commit message file path
 commit_msg_file=$1
@@ -74,7 +74,7 @@ grep -q "^Revert " "$commit_msg_file" && exit 0
 GITLINT_CONFIG_PATH="./custom-gitlint.config.js" npx gitlint "$commit_msg_file" || exit 1
 
 # Additional custom validations
-# ...
+#
 
 exit 0
 ```
@@ -88,11 +88,11 @@ Beyond commit message validation, you might want to integrate GitLint with other
 Validate all commit messages in a push:
 
 ```bash
-#!/bin/sh
+# !/bin/sh
 
 # Create a pre-push hook
 cat > .git/hooks/pre-push << 'EOF'
-#!/bin/sh
+# !/bin/sh
 
 # Get the remote name and URL
 remote="$1"
@@ -103,10 +103,10 @@ current_branch=$(git symbolic-ref --short HEAD)
 if [ "$current_branch" = "main" ] || [ "$current_branch" = "develop" ]; then
   echo "Validating commit messages before pushing to $current_branch..."
 
-  # Get the range of commits we're pushing
+# Get the range of commits we're pushing
   range=$(git merge-base HEAD origin/$current_branch)..HEAD
 
-  # Extract and validate each commit message
+# Extract and validate each commit message
   git log --pretty=%B $range | npx gitlint
 
   if [ $? -ne 0 ]; then
@@ -126,20 +126,20 @@ chmod +x .git/hooks/pre-push
 Switch to different validation rules based on the branch:
 
 ```bash
-#!/bin/sh
+# !/bin/sh
 
 # Create a post-checkout hook
 cat > .git/hooks/post-checkout << 'EOF'
-#!/bin/sh
+# !/bin/sh
 
 # Get the branch name
 branch=$(git symbolic-ref --short HEAD)
 
 # Set different GitLint configurations based on branch
-if [[ $branch == feature/* ]]; then
+if [[ $branch == feature/_ ]]; then
   echo "Using feature branch GitLint configuration"
   cp ./configs/feature-gitlint.config.js ./gitlint.config.js
-elif [[ $branch == hotfix/* ]]; then
+elif [[ $branch == hotfix/_ ]]; then
   echo "Using hotfix branch GitLint configuration"
   cp ./configs/hotfix-gitlint.config.js ./gitlint.config.js
 else
@@ -178,13 +178,13 @@ Then, when team members clone the repository or run `git init`, they'll get the 
 Add a setup script to your repository:
 
 ```bash
-#!/bin/sh
+# !/bin/sh
 # setup-hooks.sh
 
 # Create the commit-msg hook
 mkdir -p .git/hooks
 cat > .git/hooks/commit-msg << 'EOF'
-#!/bin/sh
+# !/bin/sh
 npx gitlint "$1" || exit 1
 exit 0
 EOF

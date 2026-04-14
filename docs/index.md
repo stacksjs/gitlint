@@ -29,5 +29,3 @@ features:
     icon: "💻"
     details: "Simple CLI for validating commit messages with helpful, descriptive errors."
 ---
-
-<Home />

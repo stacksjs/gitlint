@@ -86,6 +86,7 @@ feat(auth): implement OAuth2 login
 
 Add support for OAuth2 authentication with Google and GitHub providers.
 This includes:
+
 - OAuth2 client setup
 - Token refresh handling
 - User profile fetching

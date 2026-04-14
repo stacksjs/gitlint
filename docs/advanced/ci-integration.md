@@ -2,7 +2,7 @@
 
 GitLint can be integrated into continuous integration workflows to ensure that all commits in your repository adhere to your team's commit message standards. This guide covers how to integrate GitLint with popular CI/CD platforms.
 
-## Why Integrate with CI/CD?
+## Why Integrate with CI/CD
 
 While local Git hooks help developers maintain commit message quality during development, CI/CD integration offers additional benefits:
 
@@ -30,24 +30,30 @@ jobs:
   gitlint:
     runs-on: ubuntu-latest
     steps:
+
       - uses: actions/checkout@v3
+
         with:
           fetch-depth: 0 # Fetch all history for all branches and tags
 
       - name: Set up Node.js
+
         uses: actions/setup-node@v3
         with:
           node-version: '18'
           cache: npm
 
       - name: Install dependencies
+
         run: npm install
 
       - name: Validate latest commit message
+
         run: npx gitlint
         if: github.event_name == 'push'
 
       - name: Validate PR commit messages
+
         run: git log --pretty=%B ${{ github.event.pull_request.base.sha }}..${{ github.event.pull_request.head.sha }} | npx gitlint
         if: github.event_name == 'pull_request'
 ```
@@ -59,6 +65,7 @@ For GitLab CI, add a job to your `.gitlab-ci.yml` file:
 ```yaml
 # .gitlab-ci.yml
 stages:
+
   - validate
   - build
   - test
@@ -67,14 +74,16 @@ gitlint:
   stage: validate
   image: node:18-alpine
   script:
+
     - npm install gitlint
     - |
+
       if [ "$CI_PIPELINE_SOURCE" == "merge_request_event" ]; then
-        # For merge requests, check all commits in the MR
+# For merge requests, check all commits in the MR
         git fetch origin $CI_MERGE_REQUEST_TARGET_BRANCH_NAME
         git log --pretty=%B FETCH_HEAD..$CI_COMMIT_SHA | npx gitlint
       else
-        # For direct commits, check the latest commit
+# For direct commits, check the latest commit
         git log --pretty=%B -n 1 | npx gitlint
       fi
 ```
@@ -89,22 +98,28 @@ version: 2.1
 jobs:
   validate-commits:
     docker:
+
       - image: cimg/node:18.12
+
     steps:
+
       - checkout
       - run:
+
           name: Install dependencies
           command: npm install gitlint
+
       - run:
+
           name: Validate commit messages
           command: |
             if [[ -n "$CIRCLE_PULL_REQUEST" ]]; then
-              # For pull requests
+# For pull requests
               PR_NUMBER=${CIRCLE_PULL_REQUEST##*/}
               git fetch origin +refs/pull/$PR_NUMBER/merge
               git log --pretty=%B HEAD^..HEAD | npx gitlint
             else
-              # For direct commits
+# For direct commits
               git log --pretty=%B -n 1 | npx gitlint
             fi
 
@@ -112,8 +127,10 @@ workflows:
   version: 2
   build-test-deploy:
     jobs:
+
       - validate-commits
-      # Other jobs...
+
+# Other jobs
 ```
 
 ## Azure DevOps Pipelines
@@ -123,6 +140,7 @@ For Azure DevOps, add a validation task to your pipeline:
 ```yaml
 # azure-pipelines.yml
 trigger:
+
   - main
   - dev
 
@@ -130,21 +148,25 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
+
   - task: NodeTool@0
+
     inputs:
       versionSpec: 18.x
     displayName: Install Node.js
 
   - script: npm install gitlint
+
     displayName: Install dependencies
 
   - script: |
+
       if [ -n "$(System.PullRequest.SourceBranch)" ]; then
-        # For pull requests
+# For pull requests
         git fetch origin $(System.PullRequest.TargetBranch)
         git log --pretty=%B origin/$(System.PullRequest.TargetBranch)..HEAD | npx gitlint
       else
-        # For direct commits
+# For direct commits
         git log --pretty=%B -n 1 | npx gitlint
       fi
     displayName: Validate commit messages

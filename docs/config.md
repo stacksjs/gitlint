@@ -104,6 +104,7 @@ Valid types: `build`, `chore`, `ci`, `docs`, `feat`, `fix`, `perf`, `refactor`, 
 Enforces a maximum length for the commit header (first line).
 
 Options:
+
 - `maxLength`: Maximum number of characters allowed (default: 72)
 
 ```typescript
@@ -115,6 +116,7 @@ Options:
 Enforces a maximum length for each line in the commit body.
 
 Options:
+
 - `maxLength`: Maximum number of characters allowed per line (default: 100)
 
 ```typescript

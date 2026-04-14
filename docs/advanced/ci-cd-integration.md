@@ -18,16 +18,20 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
+
       - uses: actions/checkout@v4
+
         with:
           fetch-depth: 0
 
       - uses: oven-sh/setup-bun@v1
 
       - name: Install GitLint
+
         run: bun add @stacksjs/gitlint
 
       - name: Lint commits
+
         run: |
           git log --format=%B ${{ github.event.pull_request.base.sha }}..${{ github.sha }} | \
           while read -r line; do
@@ -49,16 +53,20 @@ jobs:
   validate:
     runs-on: ubuntu-latest
     steps:
+
       - uses: actions/checkout@v4
+
         with:
           fetch-depth: 0
 
       - uses: oven-sh/setup-bun@v1
 
       - name: Install dependencies
+
         run: bun install
 
       - name: Validate all PR commits
+
         run: |
           COMMITS=$(git log --format='%H' ${{ github.event.pull_request.base.sha }}..${{ github.sha }})
           FAILED=0
@@ -89,16 +97,20 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
+
       - uses: actions/checkout@v4
+
         with:
           fetch-depth: 0
 
       - uses: oven-sh/setup-bun@v1
 
       - name: Install GitLint
+
         run: bun add @stacksjs/gitlint
 
       - name: Create lint report
+
         id: lint
         run: |
           echo "## Commit Lint Report" > report.md
@@ -130,6 +142,7 @@ jobs:
           echo "failed=$FAILED" >> $GITHUB_OUTPUT
 
       - name: Comment on PR
+
         uses: actions/github-script@v7
         with:
           script: |
@@ -144,6 +157,7 @@ jobs:
             })
 
       - name: Check result
+
         if: steps.lint.outputs.failed > 0
         run: exit 1
 ```
@@ -155,14 +169,17 @@ jobs:
 ```yaml
 # .gitlab-ci.yml
 stages:
+
   - lint
 
 commit-lint:
   stage: lint
   image: oven/bun:latest
   script:
+
     - bun add @stacksjs/gitlint
     - |
+
       if [ "$CI_PIPELINE_SOURCE" = "merge_request_event" ]; then
         git fetch origin $CI_MERGE_REQUEST_TARGET_BRANCH_NAME
         COMMITS=$(git log --format=%H origin/$CI_MERGE_REQUEST_TARGET_BRANCH_NAME..HEAD)
@@ -171,7 +188,9 @@ commit-lint:
         done
       fi
   rules:
+
     - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+
 ```
 
 ### With Artifacts
@@ -181,8 +200,10 @@ commit-lint:
   stage: lint
   image: oven/bun:latest
   script:
+
     - bun add @stacksjs/gitlint
     - |
+
       git log --format="%H %s" origin/$CI_MERGE_REQUEST_TARGET_BRANCH_NAME..HEAD > commits.txt
       while read sha msg; do
         if git log -1 --format=%B $sha | bunx gitlint 2>&1 | tee -a lint-output.txt; then
@@ -193,8 +214,10 @@ commit-lint:
       done < commits.txt
   artifacts:
     paths:
+
       - results.txt
       - lint-output.txt
+
     when: always
 ```
 
@@ -207,13 +230,19 @@ version: 2.1
 jobs:
   lint-commits:
     docker:
+
       - image: oven/bun:latest
+
     steps:
+
       - checkout
       - run:
+
           name: Install GitLint
           command: bun add @stacksjs/gitlint
+
       - run:
+
           name: Lint commits
           command: |
             if [ -n "$CIRCLE_PULL_REQUEST" ]; then
@@ -225,7 +254,9 @@ workflows:
   version: 2
   lint:
     jobs:
+
       - lint-commits
+
 ```
 
 ## Jenkins
@@ -263,25 +294,31 @@ pipeline {
 ```yaml
 # azure-pipelines.yml
 trigger:
+
   - main
 
 pr:
+
   - main
 
 pool:
   vmImage: ubuntu-latest
 
 steps:
+
   - task: NodeTool@0
+
     inputs:
       versionSpec: '20.x'
 
   - script: |
+
       npm install -g bun
       bun add @stacksjs/gitlint
     displayName: Install GitLint
 
   - script: |
+
       COMMITS=$(git log --format=%H origin/main..HEAD)
       for sha in $COMMITS; do
         git log -1 --format=%B $sha | bunx gitlint
@@ -297,9 +334,13 @@ steps:
 ```yaml
 # .pre-commit-config.yaml
 repos:
+
   - repo: local
+
     hooks:
+
       - id: gitlint
+
         name: GitLint
         entry: bunx gitlint
         language: system
@@ -349,7 +390,9 @@ main()
 ### Run in CI
 
 ```yaml
+
 - name: Validate commits
+
   run: bun run scripts/ci-lint.ts
   env:
     BASE_REF: ${{ github.event.pull_request.base.sha }}

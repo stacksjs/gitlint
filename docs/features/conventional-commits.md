@@ -2,7 +2,7 @@
 
 GitLint includes built-in support for validating commit messages against the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) specification. This ensures that your commit messages follow a structured format that makes your repository history more readable and enables automated tools like semantic versioning and changelog generation.
 
-## What are Conventional Commits?
+## What are Conventional Commits
 
 Conventional Commits is a lightweight convention for creating commit messages. It provides an easy set of rules for creating an explicit commit history, which makes it easier to write automated tools like release managers.
 

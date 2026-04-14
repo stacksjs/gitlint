@@ -211,12 +211,16 @@ jobs:
   validate:
     runs-on: ubuntu-latest
     steps:
+
       - uses: actions/checkout@v3
+
         with:
           fetch-depth: 0
+
       - uses: actions/setup-node@v3
       - run: npm install
       - run: node validate-commit.js "${{ github.event.head_commit.message }}"
+
 ```
 
 ## Best Practices for Custom Rules

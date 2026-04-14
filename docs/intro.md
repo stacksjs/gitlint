@@ -4,7 +4,7 @@
 
 GitLint is a lightweight, customizable Git commit message linter that helps teams maintain consistent, high-quality commit histories. By enforcing structured commit messages, GitLint makes codebases easier to maintain, changelog generation more straightforward, and team collaboration smoother.
 
-## Why Use GitLint?
+## Why Use GitLint
 
 Maintaining a clean and consistent commit history is essential for several reasons:
 

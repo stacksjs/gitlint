@@ -57,7 +57,7 @@ gitlint hooks --uninstall
 Or manually add to your `.git/hooks/commit-msg` file:
 
 ```bash
-#!/bin/sh
+# !/bin/sh
 gitlint --edit "$1"
 ```
 
