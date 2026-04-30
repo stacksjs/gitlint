@@ -1,7 +1,7 @@
 #!/usr/bin/env bun
 import { Buffer } from 'node:buffer'
 import process from 'node:process'
-import { CAC } from 'cac'
+import { CLI as CAC } from '@stacksjs/clapp'
 import { version } from '../package.json'
 import { defaultConfig } from '../src/config'
 import { readCommitMessageFromFile } from '../src/utils'
