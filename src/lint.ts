@@ -1,8 +1,8 @@
-import type { LintResult, LintRule, RuleConfig, RuleLevel } from './types'
+import type { GitLintConfig, LintResult, LintRule, RuleConfig, RuleLevel } from './types'
 import { rules } from './rules'
 
 // Default configuration as fallback
-const defaultConfig = {
+const defaultConfig: GitLintConfig = {
   verbose: true,
   rules: {
     'conventional-commits': 2,
@@ -11,7 +11,7 @@ const defaultConfig = {
     'body-leading-blank': 2,
     'no-trailing-whitespace': 1,
   },
-  ignores: [] as string[],
+  ignores: [],
 }
 
 // Use default config
