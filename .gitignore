@@ -14,3 +14,4 @@ bin/gitlint
 bin/gitlint*
 .zed
 .cursor
+pantry
