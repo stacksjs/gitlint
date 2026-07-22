@@ -1,13 +1,14 @@
-import { execSync } from 'node:child_process'
+import { execFileSync } from 'node:child_process'
 import fs from 'node:fs'
 import path from 'node:path'
+import process from 'node:process'
 
 /**
  * Find the Git repository root directory
  */
-function findGitRoot(): string | null {
+function findGitRoot(cwd: string): string | null {
   try {
-    const gitRoot = execSync('git rev-parse --show-toplevel', { encoding: 'utf8' }).trim()
+    const gitRoot = execFileSync('git', ['rev-parse', '--show-toplevel'], { cwd, encoding: 'utf8' }).trim()
     return gitRoot
   }
   // eslint-disable-next-line unused-imports/no-unused-vars
@@ -16,18 +17,32 @@ function findGitRoot(): string | null {
   }
 }
 
+/** Resolve the effective hooks directory for main checkouts and linked worktrees. */
+export function resolveHooksDirectory(cwd: string = process.cwd()): string | null {
+  try {
+    const hooksPath = execFileSync('git', ['rev-parse', '--git-path', 'hooks'], {
+      cwd,
+      encoding: 'utf8',
+    }).trim()
+    return path.resolve(cwd, hooksPath)
+  }
+  catch {
+    return null
+  }
+}
+
 /**
  * Install Git hooks for the current repository
  */
-export function installGitHooks(force = false): boolean {
-  const gitRoot = findGitRoot()
+export function installGitHooks(force = false, cwd: string = process.cwd()): boolean {
+  const gitRoot = findGitRoot(cwd)
   if (!gitRoot) {
     console.error('Not a git repository')
     return false
   }
 
-  const hooksDir = path.join(gitRoot, '.git', 'hooks')
-  if (!fs.existsSync(hooksDir)) {
+  const hooksDir = resolveHooksDirectory(cwd)
+  if (!hooksDir || !fs.existsSync(hooksDir)) {
     console.error(`Git hooks directory not found: ${hooksDir}`)
     return false
   }
@@ -63,14 +78,19 @@ gitlint --edit "$1"
 /**
  * Uninstall Git hooks for the current repository
  */
-export function uninstallGitHooks(): boolean {
-  const gitRoot = findGitRoot()
+export function uninstallGitHooks(cwd: string = process.cwd()): boolean {
+  const gitRoot = findGitRoot(cwd)
   if (!gitRoot) {
     console.error('Not a git repository')
     return false
   }
 
-  const commitMsgHookPath = path.join(gitRoot, '.git', 'hooks', 'commit-msg')
+  const hooksDir = resolveHooksDirectory(cwd)
+  if (!hooksDir) {
+    console.error('Git hooks directory could not be resolved')
+    return false
+  }
+  const commitMsgHookPath = path.join(hooksDir, 'commit-msg')
   if (!fs.existsSync(commitMsgHookPath)) {
     console.error('No commit-msg hook found')
     return true
