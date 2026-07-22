@@ -1,3 +1,40 @@
+[Compare changes](https://github.com/stacksjs/gitlint/compare/v0.1.6...v0.1.7)
+
+## 🐛 Bug Fixes
+
+- support linked Git worktrees ([5433125](https://github.com/stacksjs/gitlint/commit/5433125)) _(by Chris <chrisbreuer93@gmail.com>)_
+- **scripts**: stop double-generating CHANGELOG on release ([489cc6b](https://github.com/stacksjs/gitlint/commit/489cc6b)) _(by Glenn Michael Torregosa <gtorregosa@gmail.com>)_
+
+## 📚 Documentation
+
+- update changelog for 0.1.6 ([b57f4f2](https://github.com/stacksjs/gitlint/commit/b57f4f2)) _(by Chris <chrisbreuer93@gmail.com>)_
+
+## 🧹 Chores
+
+- release v0.1.7 ([a26e7f4](https://github.com/stacksjs/gitlint/commit/a26e7f4)) _(by Chris <chrisbreuer93@gmail.com>)_
+- upgrade to TypeScript 7 ([dc5f160](https://github.com/stacksjs/gitlint/commit/dc5f160)) _(by Chris <chrisbreuer93@gmail.com>)_
+- **deps**: refresh bun.lock to pick up pickier 0.1.37 ([c595b8d](https://github.com/stacksjs/gitlint/commit/c595b8d)) _(by glennmichael123 <gtorregosa@gmail.com>)_
+- **deps**: refresh bun.lock to pick up pickier 0.1.35 ([201b914](https://github.com/stacksjs/gitlint/commit/201b914)) _(by glennmichael123 <gtorregosa@gmail.com>)_
+- **deps**: refresh bun.lock to pick up pickier 0.1.33 ([45852fe](https://github.com/stacksjs/gitlint/commit/45852fe)) _(by glennmichael123 <gtorregosa@gmail.com>)_
+- **deps**: refresh bun.lock to pick up @stacksjs/logsmith 0.2.3 ([d2ffee8](https://github.com/stacksjs/gitlint/commit/d2ffee8)) _(by glennmichael123 <gtorregosa@gmail.com>)_
+- **deps**: refresh bun.lock to pick up buddy-bot 0.9.20 ([a9fe3a4](https://github.com/stacksjs/gitlint/commit/a9fe3a4)) _(by glennmichael123 <gtorregosa@gmail.com>)_
+- **deps**: bump better-dx to ^0.2.15 ([a28ba22](https://github.com/stacksjs/gitlint/commit/a28ba22)) _(by glennmichael123 <gtorregosa@gmail.com>)_
+- ignore pantry directory ([e809900](https://github.com/stacksjs/gitlint/commit/e809900)) _(by glennmichael123 <gtorregosa@gmail.com>)_
+
+## ⏪ Reverts
+
+- keep staged-lint kebab + bunx gitlint shorthand ([5a6e6ea](https://github.com/stacksjs/gitlint/commit/5a6e6ea)) _(by glennmichael123 <gtorregosa@gmail.com>)_
+
+## 📄 Miscellaneous
+
+- Merge pull request #551 from stacksjs/agent/worktree-git-paths ([86c322f](https://github.com/stacksjs/gitlint/commit/86c322f)) _(by Chris <chrisbreuer93@gmail.com>)_ ([#551](https://github.com/stacksjs/gitlint/issues/551), [#551](https://github.com/stacksjs/gitlint/issues/551))
+
+## Contributors
+
+- _Chris <chrisbreuer93@gmail.com>_
+- _Glenn Michael Torregosa <gtorregosa@gmail.com>_
+- _glennmichael123 <gtorregosa@gmail.com>_
+
 [Compare changes](https://github.com/stacksjs/gitlint/compare/v0.1.5...HEAD)
 
 ### 🐛 Bug Fixes
