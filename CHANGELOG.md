@@ -1,3 +1,22 @@
+[Compare changes](https://github.com/stacksjs/gitlint/compare/v0.1.7...v0.1.8)
+
+## ⚡ Performance Improvements
+
+- **build**: minify the published bundles ([dd6e17f](https://github.com/stacksjs/gitlint/commit/dd6e17f)) _(by Chris <chrisbreuer93@gmail.com>)_
+
+## 📚 Documentation
+
+- link the community as stacksjs.com/discord ([e8fa6f7](https://github.com/stacksjs/gitlint/commit/e8fa6f7)) _(by Chris <chrisbreuer93@gmail.com>)_
+
+## 🧹 Chores
+
+- release v0.1.8 ([c4a1158](https://github.com/stacksjs/gitlint/commit/c4a1158)) _(by Chris <chrisbreuer93@gmail.com>)_
+- wip ([2a4c2c1](https://github.com/stacksjs/gitlint/commit/2a4c2c1)) _(by Chris <chrisbreuer93@gmail.com>)_
+
+## Contributors
+
+- _Chris <chrisbreuer93@gmail.com>_
+
 [Compare changes](https://github.com/stacksjs/gitlint/compare/v0.1.6...v0.1.7)
 
 ## 🐛 Bug Fixes
