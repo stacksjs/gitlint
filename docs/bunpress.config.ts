@@ -1,10 +1,9 @@
-import type { BunpressConfig } from 'bunpress'
+import type { BunPressConfig } from '@stacksjs/bunpress'
 
-const config: BunpressConfig = {
-  name: 'gitlint',
+const config: BunPressConfig = {
+  title: 'gitlint',
   description: 'Efficient Git Commit Message Linting and Formatting',
-  theme: '@bunpress/theme-docs',
-  srcDir: './docs',
+  docsDir: './docs',
   outDir: './dist/docs',
   sidebar: [
     {
